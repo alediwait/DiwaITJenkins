@@ -1,10 +1,13 @@
+
+#DiwaIT Jenkins 2019
+
 FROM node:lts-alpine AS node
 
 FROM jenkins/jenkins:lts-alpine
 
 LABEL maintainer="alejandro@diwait.com"
 
-# Switch to root user
+# Copiamos el node a la instalacion de Jenkins como root
 USER root
 
 COPY --from=node /usr/local/bin/node /usr/local/bin/
@@ -24,5 +27,6 @@ RUN set -ex \
     && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg \
     && cd /
 
-# Switch to jenkins user
+# Por ultimo elejimos el usuario Jenkins
 USER jenkins
+# Fin
